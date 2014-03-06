@@ -316,6 +316,55 @@ offset |  | Starting page offset.
 limit | 25 | Number of records to return (default 25).
 modifiedafter | | Optional modified date of the queue record for the digital tax invoice. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.   
 
+## Update a DigitalTaxInvoice by ID
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl -X PUT -H "Content-Type: application/json" -d '{"Comment":"string","Status":"string"}' https://www.concursolutions.com/api/v3.0/expense/digitaltaxinvoices/123
+-H "Authorization: OAuth <access token>"
+```
+
+> The above command returns HTML like this:
+
+```html
+    <HTML>
+      <HEAD>
+        <TITLE>Unsupported Request</TITLE>
+      </HEAD>
+      <BODY>
+        <H1>Unsupported Request</H1>
+        PUT to http&#58;&#47;&#47;www&#46;concursolutions&#46;com&#47;api&#47;v3&#46;0&#47;expense&#47;digitaltaxinvoices&#47;123 not supported.<P>
+          Reference&#32;&#35;8&#46;da3de93f&#46;1394075731&#46;ab15271
+       </BODY>
+    </HTML>
+```
+
+Updates the DigitalTaxInvoice specified in the URL.
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/expense/digitaltaxinvoices/{id}`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+content |  | Status update to the Digital Tax Invoice
+id | | ID of the Digital Tax Invoice to update 
+
 # Errors
 
 The Kittn API uses the following error codes:
