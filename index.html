@@ -116,9 +116,9 @@ curl <span class="s2">"api_endpoint_here"</span>
 You must replace <code class="prettyprint">&lt;access token</code> with your access token.
 </aside></p>
 
-<h1 id="kittens">Kittens</h1>
+<h1 id="attendeetypes">AttendeeTypes</h1>
 
-<h2 id="get-all-kittens">Get All Kittens</h2>
+<h2 id="gets-all-attendee-types">Gets all attendee types</h2>
 <pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
@@ -150,11 +150,11 @@ You must replace <code class="prettyprint">&lt;access token</code> with your acc
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></pre>
-<p>This endpoint retrieves all kittens.</p>
+<p>Returns all active AttendeeTypes for the company.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/kittens</code></p>
+<p><code class="prettyprint">GET https://www.concursolutions.com/api/v3.0/expense/attendeetypes</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -166,19 +166,19 @@ You must replace <code class="prettyprint">&lt;access token</code> with your acc
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>offset</td>
+<td></td>
+<td>Starting page offset.</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>limit</td>
+<td>25</td>
+<td>Number of records to return (default 25).</td>
 </tr>
 </tbody></table>
 
 <p><aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — <insert note here>
 </aside></p>
 
 <h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
