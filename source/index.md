@@ -784,6 +784,397 @@ offset |  | Starting page offset
 limit | 25 | Number of records to return (default 25)
 user |  | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.
 
+## Get a single QuickExpense by ID
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/expense/quickexpenses/123" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "Comment": "string",
+  "CurrencyCode": "string",
+  "ExpenseTypeCode": "string",
+  "ExpenseTypeName": "string",
+  "ID": "string",
+  "LocationName": "string",
+  "OwnerLoginID": "string",
+  "OwnerName": "string",
+  "PaymentTypeCode": "string",
+  "ReceiptImageID": "string",
+  "TransactionAmount": "Decimal?",
+  "TransactionDate": "DateTime?",
+  "URI": "string",
+  "VendorDescription": "string"
+}
+```
+
+Returns a QuickExpense by ID.
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/expense/quickexpenses/{id}`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+id | | QuickExpense ID
+user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.
+
+## Create a new QuickExpense
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl -X -POST -H "Content-Type: application/json" -d {TODO} "https://www.concursolutions.com/api/v3.0/expense/quickexpenses" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "ID": "string",
+  "URI": "string"
+}
+```
+
+Creates a new QuickExpense
+
+### HTTP Request
+
+`POST https://www.concursolutions.com/api/v3.0/expense/quickexpenses`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+content | | QuickExpense object to create
+user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.
+
+## Update a QuickExpense by ID
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl -X PUT -H "Content-Type: application/json" -d {TODO} "https://www.concursolutions.com/api/v3.0/expense/quickexpenses/123" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  TODO
+}
+```
+
+Updates the QuickExpense specified in the URL. Only the fields provided in the supplied object will be updated, missing fields will not be altered.
+
+### HTTP Request
+
+`PUT https://www.concursolutions.com/api/v3.0/expense/quickexpenses`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+id | | QuickExpense ID
+content | | Partial or complete QuickExpense object to update
+user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.
+
+## Delete a QuickExpense by ID
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl -X DELETE "https://www.concursolutions.com/api/v3.0/expense/quickexpenses/123" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  TODO
+}
+```
+
+Deletes the specified QuickExpense
+
+### HTTP Request
+
+`DELETE https://www.concursolutions.com/api/v3.0/expense/quickexpenses/{id}`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+id | | ID of the QuickExpense to delete
+user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.
+
+#ReceiptImages
+
+## Get all receipt IDs by user
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/expense/receiptimages?limit=25" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "Items": [
+    {
+      "ID": "string",
+      "URI": "string"
+    }
+  ],
+  "NextPage": "string"
+}
+```
+Get a list of all receipt IDs owned by the user associated with the OAuth token
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/expense/receiptimages?limit=25`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+offset | | Starting page offset    
+limit | 25 | 
+user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.
+
+## Get a receipt image URL
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/expense/receiptimages/123" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "ID": "string",
+  "URI": "string"
+}
+```
+Get a receipt image URL by image ID.
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/expense/receiptimages/{id}`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+id | | ReceiptImage ID       
+user |  | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.
+
+## Create a new receipt image
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl -X POST "https://www.concursolutions.com/api/v3.0/expense/receiptimages" -H "Authorization: OAuth <access token>" TODO image body
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "ID": "string",
+  "URI": "string"
+}
+```
+Creates a new image in the receipt store.
+
+### HTTP Request
+
+`POST https://www.concursolutions.com/api/v3.0/expense/receiptimages`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.           
+image |  | Image data file
+
+## Appends a receipt image to an existing receipt image
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl -X PUT "https://www.concursolutions.com/api/v3.0/expense/receiptimages/123" -H "Authorization: OAuth <access token>" TODO image body
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  TODO
+}
+```
+Appends a receipt image to an existing image in the receipt store.
+
+### HTTP Request
+
+`PUT https://www.concursolutions.com/api/v3.0/expense/receiptimages/{id}`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+id | | ID of the receipt image to update            
+user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.    
+image |  | Image data file
+
+## Deletes a receipt image by ID
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl -X DELETE "https://www.concursolutions.com/api/v3.0/expense/receiptimages/123" -H "Authorization: OAuth <access token>" TODO image body
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  TODO
+}
+```
+Deletes the specified receipt image
+
+### HTTP Request
+
+`DELETE https://www.concursolutions.com/api/v3.0/expense/receiptimages/{id}`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+id | | ID of the receipt image to delete              
+user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.   
+
 # Errors
 
 The Kittn API uses the following error codes:
