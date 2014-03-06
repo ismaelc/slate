@@ -7,13 +7,16 @@ language_tabs:
   - python
 
 toc_footers:
- - <a href='#'>Sign Up for a Developer Key</a>
+ - <a href='https://developer.concur.com/register'>Sign Up for a Developer Key</a>
  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Explore the Concur Platform
+Business travel is a $1 trillion industry, with U.S. business travelers logging 460M trips a year.* Concur enables businesses to manage everything from travel bookings to expenses and compliance requirements. And apps that integrate are in demand.
+
+The in-product Concur App Center is designed for 20M travelers.  Find API Documentation, Forums, Sample Code, a sandbox tutorial and Get Started resources to put your app inside.
 
 We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
@@ -43,14 +46,14 @@ curl "api_endpoint_here"
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Concur's implementation of OAuth 2.0 requires a Concur user’s login ID or email address, and password or PIN (i.e., their “Concur credentials”). The partner application can either collect the credentials and send them to Concur (the Native flow) or send the user to a login page owned by Concur (the Web flow). The partner application requests an OAuth token from Concur, with either the login credentials or a code supplied to the application from the Concur OAuth web page. The partner application can then use the OAuth token in web service requests.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Concur expects for the access token to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: OAuth <access token>`
 
 <aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
+You must replace `<access token` with your access token.
 </aside>
 
 # Kittens
