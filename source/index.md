@@ -455,10 +455,272 @@ Updates purchase order line item with receipt information and returns status of 
 
 Parameter | Default | Description
 --------- | ------- | -----------
-tripId |  | The trip id    
-opportunityType | | IComma separated list of opportunities (Hotel, Car, Air, Rail, Taxi and Service) to get. Do not specify any values to get all opportunities     
-fromUtc | | The From date in UTC for the date range    
-toUtc | | The To date in UTC for the date range  
+purchaseOrderReceipt |  | Purchase Order Receipt information.  
+
+# PurchaseOrders
+
+## Create a new purchase order
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl -X POST -H "Content-Type: application/json" -d '{TODO}' https://www.concursolutions.com/api/v3.0/invoice/purchaseorders -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "ErrorCode": "string",
+  "ErrorMessage": "string",
+  "FieldCode": "string",
+  "LineItemExternalID": "string",
+  "Message": "string",
+  "PurchaseOrderNumber": "string",
+  "Status": "string"
+}
+```
+
+Creates a purchase order and returns the status of creation.
+
+
+### HTTP Request
+
+`POST https://www.concursolutions.com/api/v3.0/invoice/purchaseorders`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+purchaseOrder |  | The purchase order details. 
+
+## Updates an existing purchase order
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl -X PUT -H "Content-Type: application/json" -d '{TODO}' https://www.concursolutions.com/api/v3.0/invoice/purchaseorders -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "ErrorCode": "string",
+  "ErrorMessage": "string",
+  "FieldCode": "string",
+  "LineItemExternalID": "string",
+  "Message": "string",
+  "PurchaseOrderNumber": "string",
+  "Status": "string"
+}
+```
+
+Updates an existing purchase order and returns the status of the request.
+
+
+### HTTP Request
+
+`PUT https://www.concursolutions.com/api/v3.0/invoice/purchaseorders`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+purchaseOrder |  | The purchase order details. 
+
+## Retrieves an existing purchase order
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl https://www.concursolutions.com/api/v3.0/invoice/purchaseorders/123 -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "BillToAddress": {
+    "Address1": "string",
+    "Address2": "string",
+    "Address3": "string",
+    "City": "string",
+    "CountryCode": "string",
+    "ExternalID": "string",
+    "Name": "string",
+    "PostalCode": "string",
+    "StateProvince": "string"
+  },
+  "CurrencyCode": "string",
+  "Custom1": "string",
+  "Custom10": "string",
+  "Custom11": "string",
+  "Custom12": "string",
+  "Custom13": "string",
+  "Custom14": "string",
+  "Custom15": "string",
+  "Custom16": "string",
+  "Custom17": "string",
+  "Custom18": "string",
+  "Custom19": "string",
+  "Custom2": "string",
+  "Custom20": "string",
+  "Custom21": "string",
+  "Custom22": "string",
+  "Custom23": "string",
+  "Custom24": "string",
+  "Custom3": "string",
+  "Custom4": "string",
+  "Custom5": "string",
+  "Custom6": "string",
+  "Custom7": "string",
+  "Custom8": "string",
+  "Custom9": "string",
+  "Description": "string",
+  "DiscountPercentage": "string",
+  "DiscountTerms": "string",
+  "ID": "string",
+  "LineItem": [
+    {
+      "AccountCode": "string",
+      "Allocation": [
+        {
+          "Amount": "string",
+          "Custom1": "string",
+          "Custom10": "string",
+          "Custom11": "string",
+          "Custom12": "string",
+          "Custom13": "string",
+          "Custom14": "string",
+          "Custom15": "string",
+          "Custom16": "string",
+          "Custom17": "string",
+          "Custom18": "string",
+          "Custom19": "string",
+          "Custom2": "string",
+          "Custom20": "string",
+          "Custom3": "string",
+          "Custom4": "string",
+          "Custom5": "string",
+          "Custom6": "string",
+          "Custom7": "string",
+          "Custom8": "string",
+          "Custom9": "string"
+        }
+      ],
+      "CreateDate": "string",
+      "Custom1": "string",
+      "Custom10": "string",
+      "Custom11": "string",
+      "Custom12": "string",
+      "Custom13": "string",
+      "Custom14": "string",
+      "Custom15": "string",
+      "Custom16": "string",
+      "Custom17": "string",
+      "Custom18": "string",
+      "Custom19": "string",
+      "Custom2": "string",
+      "Custom20": "string",
+      "Custom3": "string",
+      "Custom4": "string",
+      "Custom5": "string",
+      "Custom6": "string",
+      "Custom7": "string",
+      "Custom8": "string",
+      "Custom9": "string",
+      "Description": "string",
+      "ExpenseType": "string",
+      "ExternalID": "string",
+      "IsReceiptRequired": "string",
+      "LineNumber": "string",
+      "Quantity": "string",
+      "RequestedBy": "string",
+      "RequestedDeliveryDate": "string",
+      "SupplierPartID": "string",
+      "Tax": "string",
+      "UnitPrice": "string"
+    }
+  ],
+  "Name": "string",
+  "NeededByDate": "string",
+  "OrderDate": "string",
+  "PaymentTerms": "string",
+  "PolicyExternalID": "string",
+  "PurchaseOrderNumber": "string",
+  "RequestedBy": "string",
+  "RequestedDeliveryDate": "string",
+  "Shipping": "string",
+  "ShippingDescription": "string",
+  "ShippingMethodKey": "string",
+  "ShippingTermsKey": "string",
+  "ShipToAddress": {
+    "Address1": "string",
+    "Address2": "string",
+    "Address3": "string",
+    "City": "string",
+    "CountryCode": "string",
+    "ExternalID": "string",
+    "Name": "string",
+    "PostalCode": "string",
+    "StateProvince": "string"
+  },
+  "Tax": "string",
+  "URI": "string",
+  "VendorAccountNumber": "string",
+  "VendorAddressCode": "string",
+  "VendorCode": "string"
+}
+```
+
+Gets an existing purchase order.
+
+### HTTP Request
+
+`PUT https://www.concursolutions.com/api/v3.0/invoice/purchaseorders/{id}`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+id |  | The identifier for the purchase order. 
 
 # Errors
 
