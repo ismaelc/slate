@@ -408,6 +408,58 @@ opportunityType | | IComma separated list of opportunities (Hotel, Car, Air, Rai
 fromUtc | | The From date in UTC for the date range    
 toUtc | | The To date in UTC for the date range    
 
+# PurchaseOrderReceipts
+
+## Updates purchase order line item with receipt information.
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl -X PUT -H "Content-Type: application/json" -d '{"IsReceived":"string","LineItemExternalID":"string","PurchaseOrderNumber":"string","ReceivedDate":"string","ReceivedQuantity":"string"}' https://www.concursolutions.com/api/v3.0/invoice/purchaseorderreceipts
+-H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "ErrorCode": "string",
+  "ErrorMessage": "string",
+  "FieldCode": "string",
+  "LineItemExternalID": "string",
+  "Message": "string",
+  "PurchaseOrderNumber": "string",
+  "Status": "string"
+}
+```
+
+Updates purchase order line item with receipt information and returns status of updation.
+
+### HTTP Request
+
+`PUT https://www.concursolutions.com/api/v3.0/invoice/purchaseorderreceipts`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+tripId |  | The trip id    
+opportunityType | | IComma separated list of opportunities (Hotel, Car, Air, Rail, Taxi and Service) to get. Do not specify any values to get all opportunities     
+fromUtc | | The From date in UTC for the date range    
+toUtc | | The To date in UTC for the date range  
+
 # Errors
 
 The Kittn API uses the following error codes:
