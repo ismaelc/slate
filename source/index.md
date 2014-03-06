@@ -56,9 +56,9 @@ Concur expects for the access token to be included in all API requests to the se
 You must replace `<access token` with your access token.
 </aside>
 
-# Kittens
+# AttendeeTypes
 
-## Get All Kittens
+## Gets all attendee types
 
 ```ruby
 require 'kittn'
@@ -100,21 +100,21 @@ curl "http://example.com/api/kittens"
 ]
 ```
 
-This endpoint retrieves all kittens.
+Returns all active AttendeeTypes for the company.
 
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`GET https://www.concursolutions.com/api/v3.0/expense/attendeetypes`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+offset |  | Starting page offset.
+limit | 25 | Number of records to return (default 25).
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — <insert note here>
 </aside>
 
 ## Get a Specific Kitten
