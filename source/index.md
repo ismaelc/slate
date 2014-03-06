@@ -117,7 +117,7 @@ limit | 25 | Number of records to return (default 25).
 Remember — <insert note here>
 </aside>
 
-## Get a Specific Kitten
+## Get a single AttendeeType by ID
 
 ```ruby
 require 'kittn'
@@ -150,19 +150,19 @@ curl "http://example.com/api/kittens/3"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+Returns an AttendeeType by ID.
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+<aside class="warning">Warning message here</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://www.concursolutions.com/api/v3.0/expense/attendeetypes/{id}`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the cat to retrieve
+id | AttendeeType ID.
 
 # Errors
 
