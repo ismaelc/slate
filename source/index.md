@@ -172,7 +172,7 @@ Parameter | Description
 --------- | -----------
 id | AttendeeType ID.
 
-# Delete an AttendeeType by ID
+## Delete an AttendeeType by ID
 
 ## Deletes the specified AttendeeType.
 
