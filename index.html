@@ -282,6 +282,65 @@ Remember — <insert note here>
 </tr>
 </tbody></table>
 
+<h1 id="digitaltaxinvoices">DigitalTaxInvoices</h1>
+
+<h2 id="gets-all-digital-tax-invoices">Gets all digital tax invoices</h2>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+</pre><pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre><pre class="highlight shell">curl <span class="s2">"https://www.concursolutions.com/api/v3.0/expense/digitaltaxinvoices?limit=25"</span>
+  -H <span class="s2">"Authorization: OAuth &lt;access token&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"Items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"URI"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"NextPage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Returns all digital tax invoices that can be validated by the user based on the search criteria.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://www.concursolutions.com/api/v3.0/expense/digitaltaxinvoices?limit=25</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>offset</td>
+<td></td>
+<td>Starting page offset.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>25</td>
+<td>Number of records to return (default 25).</td>
+</tr>
+<tr>
+<td>modifiedafter</td>
+<td></td>
+<td>Optional modified date of the queue record for the digital tax invoice. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.</td>
+</tr>
+</tbody></table>
+
 <h1 id="errors">Errors</h1>
 
 <p>The Kittn API uses the following error codes:</p>
