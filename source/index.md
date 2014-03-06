@@ -193,19 +193,10 @@ curl -X DELETE "https://www.concursolutions.com/api/v3.0/expense/attendeetypes/1
   -H "Authorization: OAuth <access token>"
 ```
 
-> The above command returns HTML like this:
+> The above command returns JSON structured like this:
 
-```html
-    <HTML>
-      <HEAD>
-        <TITLE>Unsupported Request</TITLE>
-      </HEAD>
-      <BODY>
-        <H1>Unsupported Request</H1>
-        DELETE to http&#58;&#47;&#47;www&#46;concursolutions&#46;com&#47;api&;v3&#46;0&#47;expense&#47;attendeetypes&#47;123 not supported.<P>
-          Reference&#32;&#35;8&#46;da3de93f&#46;1394074448&#46;a9c472c
-      </BODY>
-    </HTML>
+```json
+
 ```
 
 Deletes the specified AttendeeType.
@@ -337,26 +328,17 @@ curl -X PUT -H "Content-Type: application/json" -d '{"Comment":"string","Status"
 -H "Authorization: OAuth <access token>"
 ```
 
-> The above command returns HTML like this:
+> The above command returns JSON structured like this:
 
-```html
-    <HTML>
-      <HEAD>
-        <TITLE>Unsupported Request</TITLE>
-      </HEAD>
-      <BODY>
-        <H1>Unsupported Request</H1>
-        PUT to http&#58;&#47;&#47;www&#46;concursolutions&#46;com&#47;api&#47;v3&#46;0&#47;expense&#47;digitaltaxinvoices&#47;123 not supported.<P>
-          Reference&#32;&#35;8&#46;da3de93f&#46;1394075731&#46;ab15271
-       </BODY>
-    </HTML>
+```json
+
 ```
 
 Updates the DigitalTaxInvoice specified in the URL.
 
 ### HTTP Request
 
-`GET https://www.concursolutions.com/api/v3.0/expense/digitaltaxinvoices/{id}`
+`PUT https://www.concursolutions.com/api/v3.0/expense/digitaltaxinvoices/{id}`
 
 ### Query Parameters
 
@@ -364,6 +346,67 @@ Parameter | Default | Description
 --------- | ------- | -----------
 content |  | Status update to the Digital Tax Invoice
 id | | ID of the Digital Tax Invoice to update 
+
+# Opportunities
+
+## Gets a collection of opportunities for a specified trip or for all trips that fall within a date range
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/insights/opportunities"
+  -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "Items": [
+    {
+      "EndCityCode": "string",
+      "EndDateLocal": "datetime",
+      "EndPostalCode": "string",
+      "ID": "string",
+      "IsActive": "bool",
+      "StartCityCode": "string",
+      "StartDateLocal": "datetime",
+      "StartPostalCode": "string",
+      "TripId": "string",
+      "Type": "string",
+      "URI": "string"
+    }
+  ],
+  "NextPage": "string"
+}
+```
+
+Gets a collection of opportunities for a specified trip or for all trips that fall within a date range. Specify values for fromUtc and toUtc to get opportunities for a range of trips. Specify only tripId to get opportunities for a single trip. Specify OpportunityType to filter results by the specified opportunity types.
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/insights/opportunities`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+tripId |  | The trip id    
+opportunityType | | IComma separated list of opportunities (Hotel, Car, Air, Rail, Taxi and Service) to get. Do not specify any values to get all opportunities     
+fromUtc | | The From date in UTC for the date range    
+toUtc | | The To date in UTC for the date range    
 
 # Errors
 
