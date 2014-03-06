@@ -501,6 +501,70 @@ Remember — <insert note here>
 </tr>
 </tbody></table>
 
+<h1 id="purchaseorderreceipts">PurchaseOrderReceipts</h1>
+
+<h2 id="updates-purchase-order-line-item-with-receipt-information.">Updates purchase order line item with receipt information.</h2>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+</pre><pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre><pre class="highlight shell">curl -X PUT -H <span class="s2">"Content-Type: application/json"</span> -d <span class="s1">'{"IsReceived":"string","LineItemExternalID":"string","PurchaseOrderNumber":"string","ReceivedDate":"string","ReceivedQuantity":"string"}'</span> https://www.concursolutions.com/api/v3.0/invoice/purchaseorderreceipts
+-H <span class="s2">"Authorization: OAuth &lt;access token&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"ErrorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ErrorMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"FieldCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"LineItemExternalID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"PurchaseOrderNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Updates purchase order line item with receipt information and returns status of updation.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://www.concursolutions.com/api/v3.0/invoice/purchaseorderreceipts</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tripId</td>
+<td></td>
+<td>The trip id</td>
+</tr>
+<tr>
+<td>opportunityType</td>
+<td></td>
+<td>IComma separated list of opportunities (Hotel, Car, Air, Rail, Taxi and Service) to get. Do not specify any values to get all opportunities</td>
+</tr>
+<tr>
+<td>fromUtc</td>
+<td></td>
+<td>The From date in UTC for the date range</td>
+</tr>
+<tr>
+<td>toUtc</td>
+<td></td>
+<td>The To date in UTC for the date range</td>
+</tr>
+</tbody></table>
+
 <h1 id="errors">Errors</h1>
 
 <p>The Kittn API uses the following error codes:</p>
