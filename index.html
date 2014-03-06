@@ -393,6 +393,59 @@ Remember — <insert note here>
 </tr>
 </tbody></table>
 
+<h2 id="update-a-digitaltaxinvoice-by-id">Update a DigitalTaxInvoice by ID</h2>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+</pre><pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre><pre class="highlight shell">curl -X PUT -H <span class="s2">"Content-Type: application/json"</span> -d <span class="s1">'{"Comment":"string","Status":"string"}'</span> https://www.concursolutions.com/api/v3.0/expense/digitaltaxinvoices/123
+-H <span class="s2">"Authorization: OAuth &lt;access token&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns HTML like this:</p>
+</blockquote>
+<pre class="highlight html">    <span class="nt">&lt;HTML&gt;</span>
+      <span class="nt">&lt;HEAD&gt;</span>
+        <span class="nt">&lt;TITLE&gt;</span>Unsupported Request<span class="nt">&lt;/TITLE&gt;</span>
+      <span class="nt">&lt;/HEAD&gt;</span>
+      <span class="nt">&lt;BODY&gt;</span>
+        <span class="nt">&lt;H1&gt;</span>Unsupported Request<span class="nt">&lt;/H1&gt;</span>
+        PUT to http<span class="ni">&amp;#58;&amp;#47;&amp;#47;</span>www<span class="ni">&amp;#46;</span>concursolutions<span class="ni">&amp;#46;</span>com<span class="ni">&amp;#47;</span>api<span class="ni">&amp;#47;</span>v3<span class="ni">&amp;#46;</span>0<span class="ni">&amp;#47;</span>expense<span class="ni">&amp;#47;</span>digitaltaxinvoices<span class="ni">&amp;#47;</span>123 not supported.<span class="nt">&lt;P&gt;</span>
+          Reference<span class="ni">&amp;#32;&amp;#35;</span>8<span class="ni">&amp;#46;</span>da3de93f<span class="ni">&amp;#46;</span>1394075731<span class="ni">&amp;#46;</span>ab15271
+       <span class="nt">&lt;/BODY&gt;</span>
+    <span class="nt">&lt;/HTML&gt;</span>
+</pre>
+<p>Updates the DigitalTaxInvoice specified in the URL.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://www.concursolutions.com/api/v3.0/expense/digitaltaxinvoices/{id}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>content</td>
+<td></td>
+<td>Status update to the Digital Tax Invoice</td>
+</tr>
+<tr>
+<td>id</td>
+<td></td>
+<td>ID of the Digital Tax Invoice to update</td>
+</tr>
+</tbody></table>
+
 <h1 id="errors">Errors</h1>
 
 <p>The Kittn API uses the following error codes:</p>
