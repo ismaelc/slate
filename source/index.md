@@ -75,29 +75,31 @@ api.kittens.get()
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "https://www.concursolutions.com/api/v3.0/expense/attendeetypes?limit=25"
+  -H "Authorization: OAuth <access token>"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+  "Items": [
+    {
+      "AllowAttendeeCountEditing": "bool",
+      "AllowManuallyEnteredAttendees": "bool",
+      "AttendeeFormID": "string",
+      "Code": "string",
+      "ConnectorID": "string",
+      "DuplicateSearchFields": [
+        "string"
+      ],
+      "ID": "string",
+      "Name": "string",
+      "URI": "string"
+    }
+  ],
+  "NextPage": "string"
+}
 ```
 
 Returns all active AttendeeTypes for the company.
@@ -134,19 +136,25 @@ api.kittens.get(2)
 ```
 
 ```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
+curl "https://www.concursolutions.com/api/v3.0/expense/attendeetypes/123"
+  -H "Authorization: OAuth <access token>"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "AllowAttendeeCountEditing": "bool",
+  "AllowManuallyEnteredAttendees": "bool",
+  "AttendeeFormID": "string",
+  "Code": "string",
+  "ConnectorID": "string",
+  "DuplicateSearchFields": [
+    "string"
+  ],
+  "ID": "string",
+  "Name": "string",
+  "URI": "string"
 }
 ```
 
@@ -163,6 +171,56 @@ Returns an AttendeeType by ID.
 Parameter | Description
 --------- | -----------
 id | AttendeeType ID.
+
+# Delete an AttendeeType by ID
+
+## Deletes the specified AttendeeType.
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl -X DELETE "https://www.concursolutions.com/api/v3.0/expense/attendeetypes/123"
+  -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns HTML like this:
+
+```html
+    <HTML>
+      <HEAD>
+        <TITLE>Unsupported Request</TITLE>
+      </HEAD>
+      <BODY>
+        <H1>Unsupported Request</H1>
+        DELETE to http&#58;&#47;&#47;www&#46;concursolutions&#46;com&#47;api&;v3&#46;0&#47;expense&#47;attendeetypes&#47;123 not supported.<P>
+          Reference&#32;&#35;8&#46;da3de93f&#46;1394074448&#46;a9c472c
+      </BODY>
+    </HTML>
+```
+
+Deletes the specified AttendeeType.
+
+### HTTP Request
+
+`DELETE https://www.concursolutions.com/api/v3.0/expense/attendeetypes/{id}`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+id |  | ID of the AttendeeType to delete.
 
 # Errors
 
