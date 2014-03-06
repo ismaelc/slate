@@ -174,8 +174,6 @@ id | AttendeeType ID.
 
 ## Delete an AttendeeType by ID
 
-## Deletes the specified AttendeeType.
-
 ```ruby
 require 'kittn'
 
