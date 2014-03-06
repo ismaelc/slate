@@ -722,6 +722,68 @@ Parameter | Default | Description
 --------- | ------- | -----------
 id |  | The identifier for the purchase order. 
 
+# QuickExpenses
+
+## Gets all quick expenses
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/expense/quickexpenses?limit=25" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "Items": [
+    {
+      "Comment": "string",
+      "CurrencyCode": "string",
+      "ExpenseTypeCode": "string",
+      "ExpenseTypeName": "string",
+      "ID": "string",
+      "LocationName": "string",
+      "OwnerLoginID": "string",
+      "OwnerName": "string",
+      "PaymentTypeCode": "string",
+      "ReceiptImageID": "string",
+      "TransactionAmount": "Decimal?",
+      "TransactionDate": "DateTime?",
+      "URI": "string",
+      "VendorDescription": "string"
+    }
+  ],
+  "NextPage": "string"
+}
+```
+
+Returns all QuickExpenses owned by the user.
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/expense/quickexpenses`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+offset |  | Starting page offset
+limit | 25 | Number of records to return (default 25)
+user |  | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.
+
 # Errors
 
 The Kittn API uses the following error codes:
