@@ -78,7 +78,7 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Explore the Concur Platform
+<p>Explore the Concur Platform. 
 Business travel is a $1 trillion industry, with U.S. business travelers logging 460M trips a year.* Concur enables businesses to manage everything from travel bookings to expenses and compliance requirements. And apps that integrate are in demand.</p>
 
 <p>The in-product Concur App Center is designed for 20M travelers.  Find API Documentation, Forums, Sample Code, a sandbox tutorial and Get Started resources to put your app inside.</p>
@@ -100,7 +100,7 @@ Business travel is a $1 trillion industry, with U.S. business travelers logging 
 <span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
 </pre><pre class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+  -H <span class="s2">"Authorization: OAuth &lt;access token&gt;"</span>
 </pre>
 <blockquote>
 <p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
@@ -1291,7 +1291,7 @@ Remember — <insert note here>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</pre><pre class="highlight shell">curl -X DELETE <span class="s2">"https://www.concursolutions.com/api/v3.0/expense/receiptimages/123"</span> -H <span class="s2">"Authorization: OAuth &lt;access token&gt;"</span> TODO image body
+</pre><pre class="highlight shell">curl -X DELETE <span class="s2">"https://www.concursolutions.com/api/v3.0/expense/receiptimages/123"</span> -H <span class="s2">"Authorization: OAuth &lt;access token&gt;"</span>
 </pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1324,6 +1324,946 @@ Remember — <insert note here>
 <td>user</td>
 <td></td>
 <td>Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.</td>
+</tr>
+</tbody></table>
+
+<h1 id="reportdigests">ReportDigests</h1>
+
+<h2 id="get-all-reportdigests">Get all ReportDigests</h2>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+</pre><pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre><pre class="highlight shell">curl <span class="s2">"https://www.concursolutions.com/api/v3.0/expense/reportdigests?limit=100"</span> -H <span class="s2">"Authorization: OAuth &lt;access token&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"Items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"ApprovalStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ApprovalStatusName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ApproverLoginID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ApproverName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"CountrySubdivision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"CreateDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"CurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"LastComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"OwnerLoginID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"OwnerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"PaidDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"PaymentStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"PaymentStatusName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ProcessingPaymentDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ReportHeaderLastModifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"SubmitDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Decimal?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"URI"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"UserDefinedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"NextPage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Returns all ReportDigests owned by the user based on the search criteria.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://www.concursolutions.com/api/v3.0/expense/reportdigests</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>offset</td>
+<td></td>
+<td>Starting page offset</td>
+</tr>
+<tr>
+<td>limit</td>
+<td></td>
+<td>Number of records to return (default 100)</td>
+</tr>
+<tr>
+<td>user</td>
+<td></td>
+<td>Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.</td>
+</tr>
+<tr>
+<td>approvalStatusCode</td>
+<td></td>
+<td>The status code for the Approval Status. FORMAT: list the status codes</td>
+</tr>
+<tr>
+<td>paymentStatusCode</td>
+<td></td>
+<td>The status code for the Payment Status     FORMAT: list the status codes</td>
+</tr>
+<tr>
+<td>currencyCode</td>
+<td></td>
+<td>The 3-letter ISO 4217 currency code for the report currency. Example: USD.</td>
+</tr>
+<tr>
+<td>paymentType</td>
+<td></td>
+<td>The unique identifier for the payment type that is the payment type for at least one expense entry in the report. Use PaymentTypeID from Response of GET Expense Group Configurations V3.</td>
+</tr>
+<tr>
+<td>reimbursementMethod</td>
+<td></td>
+<td>The method the report owner will be reimbursed. FORMAT: ADPPAYR - ADP Payroll; APCHECK - AP (Company Check); CNQRPAY - Expense Pay; PMTSERV - Other Payment Service. NOTE: PAY_PAL is NOT supported.</td>
+</tr>
+<tr>
+<td>approverLoginID</td>
+<td></td>
+<td>the login ID for the report approver that is the current approver assigned to the report.</td>
+</tr>
+<tr>
+<td>expenseTypeCode</td>
+<td></td>
+<td>the expense type code that is the expense type for at least one expense entry in the report. Use ExpenseTypeCode from Response of GET Expense Group Configurations V3.</td>
+</tr>
+<tr>
+<td>countryCode</td>
+<td></td>
+<td>The report country. Maximum 2 characters. Format: The ISO 3166-1 alpha-2 country code. Example: United States is US.</td>
+</tr>
+<tr>
+<td>batchID</td>
+<td></td>
+<td>The unique identifier for a payment batch where there is at least one report payee within the report. Use the BatchID from Response of GET Payment Batch List.</td>
+</tr>
+<tr>
+<td>vendorName</td>
+<td></td>
+<td>The Vendor Description that is the vendor for at least one expense entry in the report.</td>
+</tr>
+<tr>
+<td>hasVAT</td>
+<td></td>
+<td>The hasVAT flag for the report. FORMAT: true or false.</td>
+</tr>
+<tr>
+<td>hasImages</td>
+<td></td>
+<td>The hasImages flag for the report. FORMAT: true or false.</td>
+</tr>
+<tr>
+<td>hasAttendees</td>
+<td></td>
+<td>The hasAttendees flag for the report. FORMAT: true or false.</td>
+</tr>
+<tr>
+<td>hasBillableExpenses</td>
+<td></td>
+<td>The IsBillable flag for at least one expense entry in the report. FORMAT: true or false.</td>
+</tr>
+<tr>
+<td>isTestUser</td>
+<td></td>
+<td>The IsTestUser flag for the report owner. FORMAT: true or false.</td>
+</tr>
+<tr>
+<td>expenseGroupConfigID</td>
+<td></td>
+<td>The unique identifier for the expense group configuration associated to the report&rsquo;s expense group. Use the ID from the Response of the Expense Group Configurations V3.</td>
+</tr>
+<tr>
+<td>costObject</td>
+<td></td>
+<td>The list item code for an allocation field for at least allocation in the report.</td>
+</tr>
+<tr>
+<td>entryTransactionDateBefore</td>
+<td></td>
+<td>The entry transaction date for at least one expense entry in the report is before this date.Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>entryTransactionDateAfter</td>
+<td></td>
+<td>The entry transaction date for at least one expense entry in the report is after this date.Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>createDateBefore</td>
+<td></td>
+<td>The report create date is before this date.Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>createDateAfter</td>
+<td></td>
+<td>The report create date is after this date.Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>userDefinedDateBefore</td>
+<td></td>
+<td>The report user defined date is before this date.Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>userDefinedDateAfter</td>
+<td></td>
+<td>The report user defined date is after this date.Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>submitDateBefore</td>
+<td></td>
+<td>The report submit date is before this date.Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>submitDateAfter</td>
+<td></td>
+<td>the report submit date is after this date.Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>processingPaymentDateBefore</td>
+<td></td>
+<td>The report processing payment date is before this date.Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>processingPaymentDateAfter</td>
+<td></td>
+<td>The report processing payment date is after this date. Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>paidDateBefore</td>
+<td></td>
+<td>The report paid date is before this date.Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>paidDateAfter</td>
+<td></td>
+<td>The report paid date is after this date.Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>modifiedDateBefore</td>
+<td></td>
+<td>The report modified date is before this date.Format: YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>modifiedDateAfter</td>
+<td></td>
+<td>The report modified date is after this date.Format: YYYY-MM-DD</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-single-reportdigest-by-id">Get a single ReportDigest by ID</h2>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+</pre><pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre><pre class="highlight shell">curl <span class="s2">"https://www.concursolutions.com/api/v3.0/expense/reportdigests/123"</span> -H <span class="s2">"Authorization: OAuth &lt;access token&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"ApprovalStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ApprovalStatusName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ApproverLoginID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ApproverName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"CountrySubdivision"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"CreateDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"CurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"LastComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"OwnerLoginID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"OwnerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"PaidDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"PaymentStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"PaymentStatusName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ProcessingPaymentDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ReportHeaderLastModifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"SubmitDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Decimal?"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"URI"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"UserDefinedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Returns a ReportDigest by ID.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://www.concursolutions.com/api/v3.0/expense/reportdigests/{id}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td></td>
+<td>ReportDigest ID</td>
+</tr>
+<tr>
+<td>user</td>
+<td></td>
+<td>Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.</td>
+</tr>
+</tbody></table>
+
+<h1 id="requests">Requests</h1>
+
+<h2 id="get-a-travel-request-by-id">Get a Travel Request by ID</h2>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+</pre><pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre><pre class="highlight shell">curl <span class="s2">"https://www.concursolutions.com/api/v3.0/travelrequest/requests/123"</span> -H <span class="s2">"Authorization: OAuth &lt;access token&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"AgencyOfficeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ApprovalLimitDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ApprovalStatusName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"AuthorizedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"CashAdvanceCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"CashAdvancesList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"AmountRequested"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ApprovalStatusName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"CommentCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"CommentsList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"Comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"CommentDateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"FirstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"LastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"CurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"CurrencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"EmployeeCurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"EmployeeCurrencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ExchangeRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"IssueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"RequestDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"StartingBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"CommentCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"CommentsList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Comments"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"CreationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"CurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom11"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom12"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom13"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom15"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom16"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom17"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom18"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom19"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom20"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Custom9"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"EmployeeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"EndDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"EndTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"EntriesList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"AllocationCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"AllocationsList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"Custom1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom11"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom12"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom13"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom15"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom16"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom17"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom18"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom19"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom20"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom9"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Percentage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"ApprovedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"CommentCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"CommentsList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"Comments"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"Custom1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom11"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom12"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom13"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom15"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom16"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom17"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom18"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom19"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom20"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom21"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom22"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom23"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom24"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom25"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom26"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom27"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom28"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom29"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom30"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom31"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom32"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom33"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom34"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom35"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom36"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom37"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom38"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom39"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom40"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom9"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"EntryDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ExceptionCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ExceptionsList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"ExceptionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ExceptionLevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ExceptionMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"ExchangeRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ExpenseTypeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ForeignAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ForeignCurrencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"LastModifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"OrgUnit1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"OrgUnit2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"OrgUnit3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"OrgUnit4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"OrgUnit5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"OrgUnit6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"PostedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"RemainingAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"SegmentCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"SegmentsList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"ApprovedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ArrivalDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ArrivalTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ClassOfServiceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"CommentCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"CommentsList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"Comments"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"Custom1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom11"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom12"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom13"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom15"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom16"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom17"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom18"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom19"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom20"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom21"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom22"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom23"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom24"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom25"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom26"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom27"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom28"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom29"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom30"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom31"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom32"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom33"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom34"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom35"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom36"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom37"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom38"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom39"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom40"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Custom9"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"DepartureDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"DepartureTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ExceptionCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ExceptionsList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"TRException"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="s2">"ExchangeRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"FlightNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ForeignAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ForeignCurrencyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"FromLocationDetail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"FromLocationName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"IsAgencyBooked"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"IsSelfBooked"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"LastModifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"PostedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"RecordLocator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"RemainingAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"SegmentLocator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"SegmentType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ToLocationDetail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ToLocationName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"TripLocator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"TransactionDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"EntryCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"EverSentBack"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ExceptionCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ExceptionsList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"TRException"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"ExtensionOf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"HasException"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"LastModifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"LoginID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"RequestID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"RequestName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"RequestTotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"StartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"StartTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"SubmitDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"TotalApprovedAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"TotalRemainingAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"WorkflowUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Returns a Travel Request by ID.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://www.concursolutions.com/api/v3.0/travelrequest/requests/{id}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td></td>
+<td>Travel Request ID</td>
+</tr>
+<tr>
+<td>user</td>
+<td></td>
+<td>Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-all-requests">Get all Requests</h2>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+</pre><pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre><pre class="highlight shell">curl <span class="s2">"https://www.concursolutions.com/api/v3.0/travelrequest/requests?status=ACTIVE&amp;offset=0&amp;limit=25"</span> -H <span class="s2">"Authorization: OAuth &lt;access token&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"RequestsList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"ApprovalStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ApproverLoginID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"EmployeeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"EndDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"LastComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"RequestCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"RequestDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"RequestDetailsUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"RequestID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"RequestName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"RequestTotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"RequestUserLoginID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"StartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DateTime?"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"TotalCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Returns all Requests owned by the user.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://www.concursolutions.com/api/v3.0/travelrequest/requests</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td></td>
+<td>Login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.</td>
+</tr>
+<tr>
+<td>status</td>
+<td></td>
+<td>The Status search term specifies which travel request or approval status to return. If no Status value is sent, the default Status of Active will be used.</td>
+</tr>
+<tr>
+<td>modifiedAfter</td>
+<td></td>
+<td>This returns travel requests in which the associated dependents (header, entries, segments, allocations, attendees, comments ) were modified after the specified date and time. This search term can be used along with other search terms to narrow the results. The date and time (if desired) should be in UTC. The format is: YYYY-MM-DDThh:mm:ss.</td>
+</tr>
+<tr>
+<td>modifiedBefore</td>
+<td></td>
+<td>This returns travel requests in which the associated dependents (header, entries, segments, allocations, attendees, comments ) were modified before the specified date and time.This search term can be used along with other search terms to narrow the results. The date and time (if desired) should be in UTC. The format is: YYYY-MM-DDThh:mm:ss.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>Starting page offset (default 0)</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>25</td>
+<td>Number of records to return (default 25)</td>
+</tr>
+</tbody></table>
+
+<h1 id="vendors">Vendors</h1>
+
+<h2 id="retrieves-an-existing-vendor">Retrieves an existing vendor</h2>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+</pre><pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre><pre class="highlight shell">curl <span class="s2">"https://www.concursolutions.com/api/v3.0/invoice/vendors"</span> -H <span class="s2">"Authorization: OAuth &lt;access token&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"Items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"Address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Address3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"AddressCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Approved"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"BuyerAccountNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"City"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ContactEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ContactFirstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ContactLastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ContactPhoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"CountryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"CurrencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom11"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom12"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom13"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom15"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom16"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom17"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom18"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom19"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom20"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Custom9"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"DefaultEmployeeID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"DefaultExpenseTypeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"DiscountPercentage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"DiscountTermsDays"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"PaymentMethodType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"PaymentTerms"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"PostalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"PurchaseOrderContactEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"PurchaseOrderContactFirstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"PurchaseOrderContactLastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"PurchaseOrderContactPhoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ShippingMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ShippingTerms"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"State"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TaxID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"URI"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"VendorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"VendorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"NextPage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Vendor"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Vendor"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Gets an existing vendor.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://www.concursolutions.com/api/v3.0/invoice/vendors</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td></td>
+<td>The maximum number of items to be returned in a response. The default is 25 and cannot exceed 1000.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td></td>
+<td>Specifies the starting point for the next query when iterating through the collection response. Use with paged collections of resources.</td>
+</tr>
+<tr>
+<td>sortDirection</td>
+<td></td>
+<td>ascending or descending, The default value will be ascending.</td>
+</tr>
+<tr>
+<td>sortBy</td>
+<td></td>
+<td>Field you need to the results to be sorted by. Vendor Name will be made default if no value is sent. Only fields that are added to the vendor form can be used here. Fields have to be specified by name as specified in Doc.</td>
+</tr>
+<tr>
+<td>searchType</td>
+<td></td>
+<td>Valid Options - exact, begins, contains and ends - Applies for the entire given search parameters. The default value if not sent is exact.</td>
+</tr>
+<tr>
+<td>vendorCode</td>
+<td></td>
+<td>Vendor Code to be searched</td>
+</tr>
+<tr>
+<td>vendorName</td>
+<td></td>
+<td>Vendor Name to be searched</td>
+</tr>
+<tr>
+<td>taxID</td>
+<td></td>
+<td>Tax ID to be searched</td>
+</tr>
+<tr>
+<td>buyerAccountNumber</td>
+<td></td>
+<td>Buyer Account Number to be searched</td>
+</tr>
+<tr>
+<td>addressCode</td>
+<td></td>
+<td>Address Code to be searched</td>
+</tr>
+<tr>
+<td>address1</td>
+<td></td>
+<td>Address 1 to be searched</td>
+</tr>
+<tr>
+<td>address2</td>
+<td></td>
+<td>Address 2 to be searched</td>
+</tr>
+<tr>
+<td>address3</td>
+<td></td>
+<td>Address 3 to be searched</td>
+</tr>
+<tr>
+<td>city</td>
+<td></td>
+<td>City to be searched</td>
+</tr>
+<tr>
+<td>state</td>
+<td></td>
+<td>State to be searched</td>
+</tr>
+<tr>
+<td>postalCode</td>
+<td></td>
+<td>Postal Code to be searched</td>
+</tr>
+<tr>
+<td>approved</td>
+<td></td>
+<td>Find Approved/Un Approved Vendors , True/False</td>
+</tr>
+<tr>
+<td>country</td>
+<td></td>
+<td>Country to be searched</td>
+</tr>
+<tr>
+<td>custom1</td>
+<td></td>
+<td>Custom 1 to be searched</td>
+</tr>
+<tr>
+<td>custom2</td>
+<td></td>
+<td>Custom 2 to be searched</td>
+</tr>
+<tr>
+<td>custom3</td>
+<td></td>
+<td>Custom 3 to be searched</td>
+</tr>
+<tr>
+<td>custom4</td>
+<td></td>
+<td>Custom 4 to be searched</td>
+</tr>
+<tr>
+<td>custom5</td>
+<td></td>
+<td>Custom 5 to be searched</td>
+</tr>
+<tr>
+<td>custom6</td>
+<td></td>
+<td>Custom 6 to be searched</td>
+</tr>
+<tr>
+<td>custom7</td>
+<td></td>
+<td>Custom 7 to be searched</td>
+</tr>
+<tr>
+<td>custom8</td>
+<td></td>
+<td>Custom 8 to be searched</td>
+</tr>
+<tr>
+<td>custom9</td>
+<td></td>
+<td>Custom 9 to be searched</td>
+</tr>
+<tr>
+<td>custom10</td>
+<td></td>
+<td>Custom 10 to be searched</td>
+</tr>
+<tr>
+<td>custom11</td>
+<td></td>
+<td>Custom 11 to be searched</td>
+</tr>
+<tr>
+<td>custom12</td>
+<td></td>
+<td>Custom 12 to be searched</td>
+</tr>
+<tr>
+<td>custom13</td>
+<td></td>
+<td>Custom 13 to be searched</td>
+</tr>
+<tr>
+<td>custom14</td>
+<td></td>
+<td>Custom 14 to be searched</td>
+</tr>
+<tr>
+<td>custom15</td>
+<td></td>
+<td>Custom 15 to be searched</td>
 </tr>
 </tbody></table>
 
