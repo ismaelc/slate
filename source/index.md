@@ -13,7 +13,7 @@ toc_footers:
 
 # Introduction
 
-Explore the Concur Platform
+Explore the Concur Platform. 
 Business travel is a $1 trillion industry, with U.S. business travelers logging 460M trips a year.* Concur enables businesses to manage everything from travel bookings to expenses and compliance requirements. And apps that integrate are in demand.
 
 The in-product Concur App Center is designed for 20M travelers.  Find API Documentation, Forums, Sample Code, a sandbox tutorial and Get Started resources to put your app inside.
@@ -41,7 +41,7 @@ api = Kittn.authorize('meowmeowmeow')
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: OAuth <access token>"
 ```
 
 > Make sure to replace `meowmeowmeow` with your API key.
@@ -1152,7 +1152,7 @@ api.kittens.get()
 ```
 
 ```shell
-curl -X DELETE "https://www.concursolutions.com/api/v3.0/expense/receiptimages/123" -H "Authorization: OAuth <access token>" TODO image body
+curl -X DELETE "https://www.concursolutions.com/api/v3.0/expense/receiptimages/123" -H "Authorization: OAuth <access token>"
 ```
 
 > The above command returns JSON structured like this:
@@ -1174,6 +1174,656 @@ Parameter | Default | Description
 --------- | ------- | -----------
 id | | ID of the receipt image to delete              
 user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.   
+
+# ReportDigests
+
+## Get all ReportDigests
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/expense/reportdigests?limit=100" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "Items": [
+    {
+      "ApprovalStatusCode": "string",
+      "ApprovalStatusName": "string",
+      "ApproverLoginID": "string",
+      "ApproverName": "string",
+      "Country": "string",
+      "CountrySubdivision": "string",
+      "CreateDate": "DateTime?",
+      "CurrencyCode": "string",
+      "ID": "string",
+      "LastComment": "string",
+      "Name": "string",
+      "OwnerLoginID": "string",
+      "OwnerName": "string",
+      "PaidDate": "DateTime?",
+      "PaymentStatusCode": "string",
+      "PaymentStatusName": "string",
+      "ProcessingPaymentDate": "DateTime?",
+      "ReportHeaderLastModifiedDate": "DateTime?",
+      "SubmitDate": "DateTime?",
+      "Total": "Decimal?",
+      "URI": "string",
+      "UserDefinedDate": "DateTime?"
+    }
+  ],
+  "NextPage": "string"
+}
+```
+Returns all ReportDigests owned by the user based on the search criteria.
+
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/expense/reportdigests`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+offset | | Starting page offset    
+limit | | Number of records to return (default 100)    
+user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.    
+approvalStatusCode | | The status code for the Approval Status. FORMAT: list the status codes    
+paymentStatusCode | | The status code for the Payment Status     FORMAT: list the status codes	
+currencyCode | | The 3-letter ISO 4217 currency code for the report currency. Example: USD.    
+paymentType | | The unique identifier for the payment type that is the payment type for at least one expense entry in the report. Use PaymentTypeID from Response of GET Expense Group Configurations V3.    
+reimbursementMethod | | The method the report owner will be reimbursed. FORMAT: ADPPAYR - ADP Payroll; APCHECK - AP (Company Check); CNQRPAY - Expense Pay; PMTSERV - Other Payment Service. NOTE: PAY_PAL is NOT supported.    
+approverLoginID | | the login ID for the report approver that is the current approver assigned to the report.    
+expenseTypeCode | | the expense type code that is the expense type for at least one expense entry in the report. Use ExpenseTypeCode from Response of GET Expense Group Configurations V3.    
+countryCode | | The report country. Maximum 2 characters. Format: The ISO 3166-1 alpha-2 country code. Example: United States is US.    
+batchID | | The unique identifier for a payment batch where there is at least one report payee within the report. Use the BatchID from Response of GET Payment Batch List.    
+vendorName | | The Vendor Description that is the vendor for at least one expense entry in the report.    
+hasVAT | | The hasVAT flag for the report. FORMAT: true or false.    
+hasImages | | The hasImages flag for the report. FORMAT: true or false.    
+hasAttendees | | The hasAttendees flag for the report. FORMAT: true or false.    
+hasBillableExpenses | | The IsBillable flag for at least one expense entry in the report. FORMAT: true or false.    
+isTestUser | | The IsTestUser flag for the report owner. FORMAT: true or false.    
+expenseGroupConfigID | | The unique identifier for the expense group configuration associated to the report's expense group. Use the ID from the Response of the Expense Group Configurations V3.    
+costObject | | The list item code for an allocation field for at least allocation in the report.    
+entryTransactionDateBefore | | The entry transaction date for at least one expense entry in the report is before this date.Format: YYYY-MM-DD    
+entryTransactionDateAfter | | The entry transaction date for at least one expense entry in the report is after this date.Format: YYYY-MM-DD    
+createDateBefore | | The report create date is before this date.Format: YYYY-MM-DD    
+createDateAfter | | The report create date is after this date.Format: YYYY-MM-DD    
+userDefinedDateBefore | | The report user defined date is before this date.Format: YYYY-MM-DD    
+userDefinedDateAfter | | The report user defined date is after this date.Format: YYYY-MM-DD    
+submitDateBefore | | The report submit date is before this date.Format: YYYY-MM-DD    
+submitDateAfter | | the report submit date is after this date.Format: YYYY-MM-DD    
+processingPaymentDateBefore | | The report processing payment date is before this date.Format: YYYY-MM-DD    
+processingPaymentDateAfter | | The report processing payment date is after this date. Format: YYYY-MM-DD    
+paidDateBefore | | The report paid date is before this date.Format: YYYY-MM-DD    
+paidDateAfter | | The report paid date is after this date.Format: YYYY-MM-DD    
+modifiedDateBefore | | The report modified date is before this date.Format: YYYY-MM-DD    
+modifiedDateAfter | | The report modified date is after this date.Format: YYYY-MM-DD    
+
+## Get a single ReportDigest by ID
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/expense/reportdigests/123" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "ApprovalStatusCode": "string",
+  "ApprovalStatusName": "string",
+  "ApproverLoginID": "string",
+  "ApproverName": "string",
+  "Country": "string",
+  "CountrySubdivision": "string",
+  "CreateDate": "DateTime?",
+  "CurrencyCode": "string",
+  "ID": "string",
+  "LastComment": "string",
+  "Name": "string",
+  "OwnerLoginID": "string",
+  "OwnerName": "string",
+  "PaidDate": "DateTime?",
+  "PaymentStatusCode": "string",
+  "PaymentStatusName": "string",
+  "ProcessingPaymentDate": "DateTime?",
+  "ReportHeaderLastModifiedDate": "DateTime?",
+  "SubmitDate": "DateTime?",
+  "Total": "Decimal?",
+  "URI": "string",
+  "UserDefinedDate": "DateTime?"
+}
+```
+Returns a ReportDigest by ID.
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/expense/reportdigests/{id}`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+id | | ReportDigest ID    
+user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.    
+
+# Requests
+
+## Get a Travel Request by ID
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/travelrequest/requests/123" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "AgencyOfficeName": "string",
+  "ApprovalLimitDate": "DateTime?",
+  "ApprovalStatusName": "string",
+  "AuthorizedDate": "DateTime?",
+  "CashAdvanceCount": "int",
+  "CashAdvancesList": [
+    {
+      "AmountRequested": "string",
+      "ApprovalStatusName": "string",
+      "CommentCount": "int",
+      "CommentsList": [
+        {
+          "Comment": "string",
+          "CommentDateTime": "DateTime?",
+          "FirstName": "string",
+          "LastName": "string"
+        }
+      ],
+      "CurrencyCode": "string",
+      "CurrencyName": "string",
+      "EmployeeCurrencyCode": "string",
+      "EmployeeCurrencyName": "string",
+      "ExchangeRate": "string",
+      "IssueDate": "DateTime?",
+      "RequestDate": "DateTime?",
+      "StartingBalance": "string"
+    }
+  ],
+  "CommentCount": "int",
+  "CommentsList": [
+    "Comments"
+  ],
+  "CreationDate": "DateTime?",
+  "CurrencyCode": "string",
+  "Custom1": "string",
+  "Custom10": "string",
+  "Custom11": "string",
+  "Custom12": "string",
+  "Custom13": "string",
+  "Custom14": "string",
+  "Custom15": "string",
+  "Custom16": "string",
+  "Custom17": "string",
+  "Custom18": "string",
+  "Custom19": "string",
+  "Custom2": "string",
+  "Custom20": "string",
+  "Custom3": "string",
+  "Custom4": "string",
+  "Custom5": "string",
+  "Custom6": "string",
+  "Custom7": "string",
+  "Custom8": "string",
+  "Custom9": "string",
+  "EmployeeName": "string",
+  "EndDate": "string",
+  "EndTime": "string",
+  "EntriesList": [
+    {
+      "AllocationCount": "int",
+      "AllocationsList": [
+        {
+          "Custom1": "string",
+          "Custom10": "string",
+          "Custom11": "string",
+          "Custom12": "string",
+          "Custom13": "string",
+          "Custom14": "string",
+          "Custom15": "string",
+          "Custom16": "string",
+          "Custom17": "string",
+          "Custom18": "string",
+          "Custom19": "string",
+          "Custom2": "string",
+          "Custom20": "string",
+          "Custom3": "string",
+          "Custom4": "string",
+          "Custom5": "string",
+          "Custom6": "string",
+          "Custom7": "string",
+          "Custom8": "string",
+          "Custom9": "string",
+          "Percentage": "string"
+        }
+      ],
+      "ApprovedAmount": "string",
+      "CommentCount": "int",
+      "CommentsList": [
+        "Comments"
+      ],
+      "Custom1": "string",
+      "Custom10": "string",
+      "Custom11": "string",
+      "Custom12": "string",
+      "Custom13": "string",
+      "Custom14": "string",
+      "Custom15": "string",
+      "Custom16": "string",
+      "Custom17": "string",
+      "Custom18": "string",
+      "Custom19": "string",
+      "Custom2": "string",
+      "Custom20": "string",
+      "Custom21": "string",
+      "Custom22": "string",
+      "Custom23": "string",
+      "Custom24": "string",
+      "Custom25": "string",
+      "Custom26": "string",
+      "Custom27": "string",
+      "Custom28": "string",
+      "Custom29": "string",
+      "Custom3": "string",
+      "Custom30": "string",
+      "Custom31": "string",
+      "Custom32": "string",
+      "Custom33": "string",
+      "Custom34": "string",
+      "Custom35": "string",
+      "Custom36": "string",
+      "Custom37": "string",
+      "Custom38": "string",
+      "Custom39": "string",
+      "Custom4": "string",
+      "Custom40": "string",
+      "Custom5": "string",
+      "Custom6": "string",
+      "Custom7": "string",
+      "Custom8": "string",
+      "Custom9": "string",
+      "EntryDescription": "string",
+      "ExceptionCount": "int",
+      "ExceptionsList": [
+        {
+          "ExceptionCode": "string",
+          "ExceptionLevel": "int",
+          "ExceptionMessage": "string"
+        }
+      ],
+      "ExchangeRate": "string",
+      "ExpenseTypeName": "string",
+      "ForeignAmount": "string",
+      "ForeignCurrencyName": "string",
+      "LastModifiedDate": "DateTime?",
+      "OrgUnit1": "string",
+      "OrgUnit2": "string",
+      "OrgUnit3": "string",
+      "OrgUnit4": "string",
+      "OrgUnit5": "string",
+      "OrgUnit6": "string",
+      "PostedAmount": "string",
+      "RemainingAmount": "string",
+      "SegmentCount": "int",
+      "SegmentsList": [
+        {
+          "ApprovedAmount": "string",
+          "ArrivalDate": "string",
+          "ArrivalTime": "string",
+          "ClassOfServiceCode": "string",
+          "CommentCount": "int",
+          "CommentsList": [
+            "Comments"
+          ],
+          "Custom1": "string",
+          "Custom10": "string",
+          "Custom11": "string",
+          "Custom12": "string",
+          "Custom13": "string",
+          "Custom14": "string",
+          "Custom15": "string",
+          "Custom16": "string",
+          "Custom17": "string",
+          "Custom18": "string",
+          "Custom19": "string",
+          "Custom2": "string",
+          "Custom20": "string",
+          "Custom21": "string",
+          "Custom22": "string",
+          "Custom23": "string",
+          "Custom24": "string",
+          "Custom25": "string",
+          "Custom26": "string",
+          "Custom27": "string",
+          "Custom28": "string",
+          "Custom29": "string",
+          "Custom3": "string",
+          "Custom30": "string",
+          "Custom31": "string",
+          "Custom32": "string",
+          "Custom33": "string",
+          "Custom34": "string",
+          "Custom35": "string",
+          "Custom36": "string",
+          "Custom37": "string",
+          "Custom38": "string",
+          "Custom39": "string",
+          "Custom4": "string",
+          "Custom40": "string",
+          "Custom5": "string",
+          "Custom6": "string",
+          "Custom7": "string",
+          "Custom8": "string",
+          "Custom9": "string",
+          "DepartureDate": "string",
+          "DepartureTime": "string",
+          "ExceptionCount": "int",
+          "ExceptionsList": [
+            "TRException"
+          ],
+          "ExchangeRate": "string",
+          "FlightNumber": "string",
+          "ForeignAmount": "string",
+          "ForeignCurrencyName": "string",
+          "FromLocationDetail": "string",
+          "FromLocationName": "string",
+          "IsAgencyBooked": "string",
+          "IsSelfBooked": "string",
+          "LastModifiedDate": "DateTime?",
+          "PostedAmount": "string",
+          "RecordLocator": "string",
+          "RemainingAmount": "string",
+          "SegmentLocator": "string",
+          "SegmentType": "string",
+          "ToLocationDetail": "string",
+          "ToLocationName": "string",
+          "TripLocator": "string"
+        }
+      ],
+      "TransactionDate": "DateTime?"
+    }
+  ],
+  "EntryCount": "int",
+  "EverSentBack": "string",
+  "ExceptionCount": "int",
+  "ExceptionsList": [
+    "TRException"
+  ],
+  "ExtensionOf": "string",
+  "HasException": "string",
+  "LastModifiedDate": "DateTime?",
+  "LoginID": "string",
+  "Purpose": "string",
+  "RequestID": "string",
+  "RequestName": "string",
+  "RequestTotal": "string",
+  "StartDate": "string",
+  "StartTime": "string",
+  "SubmitDate": "DateTime?",
+  "TotalApprovedAmount": "string",
+  "TotalRemainingAmount": "string",
+  "WorkflowUrl": "string"
+}
+```
+Returns a Travel Request by ID.
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/travelrequest/requests/{id}`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+id | | Travel Request ID
+user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.    
+
+## Get all Requests
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/travelrequest/requests?status=ACTIVE&offset=0&limit=25" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "RequestsList": [
+    {
+      "ApprovalStatus": "string",
+      "ApproverLoginID": "string",
+      "EmployeeName": "string",
+      "EndDate": "DateTime?",
+      "LastComment": "string",
+      "Purpose": "string",
+      "RequestCurrency": "string",
+      "RequestDate": "DateTime?",
+      "RequestDetailsUrl": "string",
+      "RequestID": "string",
+      "RequestName": "string",
+      "RequestTotal": "string",
+      "RequestUserLoginID": "string",
+      "StartDate": "DateTime?"
+    }
+  ],
+  "TotalCount": "int"
+}
+```
+Returns all Requests owned by the user.
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/travelrequest/requests`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+user | | Login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.    
+status | | The Status search term specifies which travel request or approval status to return. If no Status value is sent, the default Status of Active will be used.    
+modifiedAfter | | This returns travel requests in which the associated dependents (header, entries, segments, allocations, attendees, comments ) were modified after the specified date and time. This search term can be used along with other search terms to narrow the results. The date and time (if desired) should be in UTC. The format is: YYYY-MM-DDThh:mm:ss.    
+modifiedBefore | | This returns travel requests in which the associated dependents (header, entries, segments, allocations, attendees, comments ) were modified before the specified date and time.This search term can be used along with other search terms to narrow the results. The date and time (if desired) should be in UTC. The format is: YYYY-MM-DDThh:mm:ss.    
+offset | 0 | Starting page offset (default 0)    
+limit | 25 | Number of records to return (default 25)    
+
+# Vendors
+
+## Retrieves an existing vendor
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/invoice/vendors" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "Items": [
+    {
+      "Address1": "string",
+      "Address2": "string",
+      "Address3": "string",
+      "AddressCode": "string",
+      "Approved": "string",
+      "BuyerAccountNumber": "string",
+      "City": "string",
+      "ContactEmail": "string",
+      "ContactFirstName": "string",
+      "ContactLastName": "string",
+      "ContactPhoneNumber": "string",
+      "Country": "string",
+      "CountryCode": "string",
+      "CurrencyCode": "string",
+      "Custom1": "string",
+      "Custom10": "string",
+      "Custom11": "string",
+      "Custom12": "string",
+      "Custom13": "string",
+      "Custom14": "string",
+      "Custom15": "string",
+      "Custom16": "string",
+      "Custom17": "string",
+      "Custom18": "string",
+      "Custom19": "string",
+      "Custom2": "string",
+      "Custom20": "string",
+      "Custom3": "string",
+      "Custom4": "string",
+      "Custom5": "string",
+      "Custom6": "string",
+      "Custom7": "string",
+      "Custom8": "string",
+      "Custom9": "string",
+      "DefaultEmployeeID": "string",
+      "DefaultExpenseTypeName": "string",
+      "DiscountPercentage": "string",
+      "DiscountTermsDays": "string",
+      "PaymentMethodType": "string",
+      "PaymentTerms": "string",
+      "PostalCode": "string",
+      "PurchaseOrderContactEmail": "string",
+      "PurchaseOrderContactFirstName": "string",
+      "PurchaseOrderContactLastName": "string",
+      "PurchaseOrderContactPhoneNumber": "string",
+      "ShippingMethod": "string",
+      "ShippingTerms": "string",
+      "State": "string",
+      "TaxID": "string",
+      "URI": "string",
+      "VendorCode": "string",
+      "VendorName": "string"
+    }
+  ],
+  "NextPage": "string",
+  "Vendor": [
+    "Vendor"
+  ]
+}
+```
+Gets an existing vendor.
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/invoice/vendors`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+limit | | The maximum number of items to be returned in a response. The default is 25 and cannot exceed 1000.    
+offset | | Specifies the starting point for the next query when iterating through the collection response. Use with paged collections of resources.    
+sortDirection | | ascending or descending, The default value will be ascending.    
+sortBy | | Field you need to the results to be sorted by. Vendor Name will be made default if no value is sent. Only fields that are added to the vendor form can be used here. Fields have to be specified by name as specified in Doc.    
+searchType | | Valid Options - exact, begins, contains and ends - Applies for the entire given search parameters. The default value if not sent is exact.    
+vendorCode | | Vendor Code to be searched    
+vendorName | | Vendor Name to be searched    
+taxID | | Tax ID to be searched    
+buyerAccountNumber | | Buyer Account Number to be searched    
+addressCode | | Address Code to be searched    
+address1 | | Address 1 to be searched    
+address2 | | Address 2 to be searched    
+address3 | | Address 3 to be searched    
+city | | City to be searched    
+state | | State to be searched    
+postalCode | | Postal Code to be searched    
+approved | | Find Approved/Un Approved Vendors , True/False    
+country | | Country to be searched    
+custom1 | | Custom 1 to be searched
+custom2 | | Custom 2 to be searched
+custom3 | | Custom 3 to be searched
+custom4 | | Custom 4 to be searched
+custom5 | | Custom 5 to be searched
+custom6 | | Custom 6 to be searched
+custom7 | | Custom 7 to be searched
+custom8 | | Custom 8 to be searched
+custom9 | | Custom 9 to be searched
+custom10 | | Custom 10 to be searched
+custom11 | | Custom 11 to be searched
+custom12 | | Custom 12 to be searched
+custom13 | | Custom 13 to be searched
+custom14 | | Custom 14 to be searched
+custom15 | | Custom 15 to be searched
+
+
 
 # Errors
 
