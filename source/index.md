@@ -525,6 +525,139 @@ user | | Optional. The login ID of the user. The access token owner must have th
 offset | | Starting page offset
 limit | 10 | Determines the number of records to return (default 10)
 
+## Gets an expense group configuration by ID
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/expense/expensegroupconfigurations/123" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "AllowUserDigitalTaxInvoice": "Boolean?",
+  "AllowUserRegisterYodlee": "Boolean?",
+  "AttendeeListFormID": "string",
+  "AttendeeListFormName": "string",
+  "AttendeeTypes": [
+    {
+      "Code": "string",
+      "Name": "string"
+    }
+  ],
+  "CashAdvance": {
+    "AllowUserCarryBalance": "Boolean?",
+    "AllowUserLinkMultiple": "Boolean?",
+    "AllowUserUpdateExchangeRate": "Boolean?",
+    "Name": "string",
+    "WorkflowID": "string"
+  },
+  "ID": "string",
+  "Name": "string",
+  "PaymentTypes": [
+    {
+      "ID": "string",
+      "IsDefault": "Boolean?",
+      "Name": "string"
+    }
+  ],
+  "Policies": [
+    {
+      "ExpenseTypes": [
+        {
+          "Code": "string",
+          "ExpenseCode": "string",
+          "Name": "string"
+        }
+      ],
+      "ID": "string",
+      "IsDefault": "Boolean?",
+      "IsInheritable": "Boolean?",
+      "Name": "string"
+    }
+  ],
+  "URI": "string"
+}
+```
+
+Gets an expense group configuration by ID.
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/expense/expensegroupconfigurations/{id}`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+id | | Specifies the Expense Group Configuration ID
+user | | Optional. The login ID of the user. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.
+
+# LatestBookings
+
+## Get the latest hotel and air booking for a particular user
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/insights/latestbookings/" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "Airlines": [
+    {
+      "BookingClass": "string",
+      "Code": "string"
+    }
+  ],
+  "Hotel": {
+    "Location": "string",
+    "StarRating": "Int32?"
+  }
+}
+```
+
+Get the latest hotel and air booking for a particular user.
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/insights/latestbookings/`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+user | | Optional. The login ID of the user. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.
+
 # Opportunities
 
 ## Gets a collection of opportunities for a specified trip or for all trips that fall within a date range
