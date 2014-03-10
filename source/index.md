@@ -347,6 +347,184 @@ Parameter | Default | Description
 content |  | Status update to the Digital Tax Invoice
 id | | ID of the Digital Tax Invoice to update 
 
+# Entries
+
+## Create a new expense entry
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl -X POST -H "Content-Type: application/json" -d '{TODO}' https://www.concursolutions.com/api/v3.0/expense/entries -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "ID": "string",
+  "URI": "string"
+}
+```
+
+Creates a new expense entry
+
+### HTTP Request
+
+`POST https://www.concursolutions.com/api/v3.0/expense/entries`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+content | | Expense entry object to create
+user | | Optional. The login ID of the user. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.
+
+# ExhangeRates
+
+## Retrieve exchange rate
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/expense/exchangerates/?fromCurrency=USD&toCurrency=CAD&forDate=2012-12-20" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    TODO
+}
+```
+
+Retrieve exchange rate between two currencies on a given date.
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/expense/exchangerates/?fromCurrency={fromCurrency}&toCurrency={toCurrency}&forDate={forDate}`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+fromCurrency | | The 3-letter ISO 4217 currency code for exchange from currency. Example: USD
+toCurrency | | The 3-letter ISO 4217 currency code for exchange to currency. Example: CAD
+forDate | | For date in YYYY-MM-DD format. Example: 2012-12-20. Dates older than 2000-01-01 will result in exchange rate of 1 and dates in the future will result in today's exchange rate.
+
+# ExpenseGroupConfigurations
+
+## Get an expense group configuration
+
+```ruby
+require 'kittn'
+
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
+```
+
+```python
+import 'kittn'
+
+api = Kittn.authorize('meowmeowmeow')
+api.kittens.get()
+```
+
+```shell
+curl "https://www.concursolutions.com/api/v3.0/expense/expensegroupconfigurations?limit=10" -H "Authorization: OAuth <access token>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "Items": [
+    {
+      "AllowUserDigitalTaxInvoice": "Boolean?",
+      "AllowUserRegisterYodlee": "Boolean?",
+      "AttendeeListFormID": "string",
+      "AttendeeListFormName": "string",
+      "AttendeeTypes": [
+        {
+          "Code": "string",
+          "Name": "string"
+        }
+      ],
+      "CashAdvance": {
+        "AllowUserCarryBalance": "Boolean?",
+        "AllowUserLinkMultiple": "Boolean?",
+        "AllowUserUpdateExchangeRate": "Boolean?",
+        "Name": "string",
+        "WorkflowID": "string"
+      },
+      "ID": "string",
+      "Name": "string",
+      "PaymentTypes": [
+        {
+          "ID": "string",
+          "IsDefault": "Boolean?",
+          "Name": "string"
+        }
+      ],
+      "Policies": [
+        {
+          "ExpenseTypes": [
+            {
+              "Code": "string",
+              "ExpenseCode": "string",
+              "Name": "string"
+            }
+          ],
+          "ID": "string",
+          "IsDefault": "Boolean?",
+          "IsInheritable": "Boolean?",
+          "Name": "string"
+        }
+      ],
+      "URI": "string"
+    }
+  ],
+  "NextPage": "string"
+}
+```
+
+Get an expense group configuration owned by the user based on the search criteria.
+
+### HTTP Request
+
+`GET https://www.concursolutions.com/api/v3.0/expense/expensegroupconfigurations`
+
+### Query Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+user | | Optional. The login ID of the user. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.
+offset | | Starting page offset
+limit | 10 | Determines the number of records to return (default 10)
+
 # Opportunities
 
 ## Gets a collection of opportunities for a specified trip or for all trips that fall within a date range
@@ -1245,7 +1423,7 @@ offset | | Starting page offset
 limit | | Number of records to return (default 100)    
 user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.    
 approvalStatusCode | | The status code for the Approval Status. FORMAT: list the status codes    
-paymentStatusCode | | The status code for the Payment Status     FORMAT: list the status codes	
+paymentStatusCode | | The status code for the Payment Status     FORMAT: list the status codes    
 currencyCode | | The 3-letter ISO 4217 currency code for the report currency. Example: USD.    
 paymentType | | The unique identifier for the payment type that is the payment type for at least one expense entry in the report. Use PaymentTypeID from Response of GET Expense Group Configurations V3.    
 reimbursementMethod | | The method the report owner will be reimbursed. FORMAT: ADPPAYR - ADP Payroll; APCHECK - AP (Company Check); CNQRPAY - Expense Pay; PMTSERV - Other Payment Service. NOTE: PAY_PAL is NOT supported.    
