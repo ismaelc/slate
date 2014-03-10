@@ -626,6 +626,143 @@ Remember — <insert note here>
 </tr>
 </tbody></table>
 
+<h2 id="gets-an-expense-group-configuration-by-id">Gets an expense group configuration by ID</h2>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+</pre><pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre><pre class="highlight shell">curl <span class="s2">"https://www.concursolutions.com/api/v3.0/expense/expensegroupconfigurations/123"</span> -H <span class="s2">"Authorization: OAuth &lt;access token&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"AllowUserDigitalTaxInvoice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean?"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"AllowUserRegisterYodlee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean?"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"AttendeeListFormID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"AttendeeListFormName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"AttendeeTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"Code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"CashAdvance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"AllowUserCarryBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"AllowUserLinkMultiple"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"AllowUserUpdateExchangeRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"WorkflowID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"PaymentTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"IsDefault"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"Policies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"ExpenseTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"Code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"ExpenseCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"IsDefault"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"IsInheritable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean?"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"URI"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Gets an expense group configuration by ID.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://www.concursolutions.com/api/v3.0/expense/expensegroupconfigurations/{id}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td></td>
+<td>Specifies the Expense Group Configuration ID</td>
+</tr>
+<tr>
+<td>user</td>
+<td></td>
+<td>Optional. The login ID of the user. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.</td>
+</tr>
+</tbody></table>
+
+<h1 id="latestbookings">LatestBookings</h1>
+
+<h2 id="get-the-latest-hotel-and-air-booking-for-a-particular-user">Get the latest hotel and air booking for a particular user</h2>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+</pre><pre class="highlight python"><span class="kn">import</span> <span class="s">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">Kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</pre><pre class="highlight shell">curl <span class="s2">"https://www.concursolutions.com/api/v3.0/insights/latestbookings/"</span> -H <span class="s2">"Authorization: OAuth &lt;access token&gt;"</span>
+</pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"Airlines"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"BookingClass"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"Hotel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"StarRating"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Int32?"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Get the latest hotel and air booking for a particular user.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://www.concursolutions.com/api/v3.0/insights/latestbookings/</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td></td>
+<td>Optional. The login ID of the user. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.</td>
+</tr>
+</tbody></table>
+
 <h1 id="opportunities">Opportunities</h1>
 
 <h2 id="gets-a-collection-of-opportunities-for-a-specified-trip-or-for-all-trips-that-fall-within-a-date-range">Gets a collection of opportunities for a specified trip or for all trips that fall within a date range</h2>
