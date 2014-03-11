@@ -1276,7 +1276,7 @@ user | | Optional login ID of the user to act on the behalf of. The access token
 
 #ReceiptImages
 
-![ReceiptImages](http://chrispogeek.files.wordpress.com/2014/01/expense-center-chris-ismael.png)
+![ReceiptImages](http://chrispogeek.files.wordpress.com/2014/01/expense-center-chris-ismael.png "ReceiptImages")
 
 ## Get all receipt IDs by user
 
