@@ -1276,8 +1276,6 @@ user | | Optional login ID of the user to act on the behalf of. The access token
 
 #ReceiptImages
 
-![ReceiptImages](http://chrispogeek.files.wordpress.com/2014/01/expense-center-chris-ismael.png "ReceiptImages")
-
 ## Get all receipt IDs by user
 
 ```ruby
@@ -1324,6 +1322,8 @@ Parameter | Default | Description
 offset | | Starting page offset    
 limit | 25 | 
 user | | Optional login ID of the user to act on the behalf of. The access token owner must have the Web Services Admin (Professional) or Can Administer (Standard) user role to use this parameter.
+
+![ReceiptImages](http://chrispogeek.files.wordpress.com/2014/01/expense-center-chris-ismael.png "ReceiptImages")
 
 ## Get a receipt image URL
 
